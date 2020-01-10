@@ -28,4 +28,9 @@ public class StringTest {
         accountService.saveAccount(account);
 
     }
+
+    @Test
+    public void testSpringSpringMVC() {
+
+    }
 }

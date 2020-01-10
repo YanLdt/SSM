@@ -1,5 +1,7 @@
 package com.yanl.controller;
 
+import com.yanl.service.impl.AccountServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,12 +15,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/account")
 public class AccountController {
 
+    @Autowired
+    private AccountServiceImpl accountService;
     /**
      * 测试跳转
      * @return success
      */
     @RequestMapping("/testSsm")
     public String testSsm(){
+        return "success";
+    }
+
+    /**
+     * 测试spring和springMVC整合
+     * @return success
+     */
+    @RequestMapping("/testSpringAndMvc")
+    public String testSpringAndSpringMvc(){
+        accountService.findAll();
         return "success";
     }
 }

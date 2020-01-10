@@ -12,6 +12,7 @@
 </head>
 <body>
 <h1>ssm整合</h1>
-<a href="account/testSsm">testSSM</a>
+<a href="account/testSsm">testSSM</a><br/>
+<a href="account/testSpringAndMvc">testSpringAndSpringMvc</a>
 </body>
 </html>

@@ -5,15 +5,38 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+<!--  配置监听器，在服务器启动时，扫描applicationContext.xml配置文件-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+
+<!--  配置过滤器，解决中文乱码 -->
+  <filter>
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
   <servlet>
     <servlet-name>dispatcherServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-<!--    配置初始化参数，加载springMVC配置文件，在IOD容器中生成Bean-->
+<!--    配置初始化参数，加载springMVC配置文件，在IOD容器中生成Bean -->
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:springMVC.xml</param-value>
     </init-param>
-<!--    服务器启动时，创建DispatcherServlet对象-->
+<!--    服务器启动时，创建DispatcherServlet对象  -->
     <load-on-startup>1</load-on-startup>
   </servlet>
 
@@ -21,4 +44,5 @@
     <servlet-name>dispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
 </web-app>
