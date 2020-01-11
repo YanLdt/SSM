@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+<!--    配置mybatis环境-->
+    <environments default="mysql">
+        <environment id="mysql">
+<!--            配置事务管理器-->
+            <transactionManager type="JDBC"/>
+<!--            配置数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/ssm?useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+        <!--使用映射文件配置
+    指定映射配置文件的位置，映射配置文件指每一个dao独立的配置文件-->
+<!--        <mapper resource="com/yanl/dao/IAccountDao.xml"/>
+                配置文件里为sql语句，注解直接写在接口方法上更加简单-->
+<!--        使用注解配置-->
+<!--        指定特定的接口-->
+        <mapper class="com.yanl.dao.IAccountDao"/>
+<!--        该包下所有接口都能使用-->
+<!--        <package name="com.yanl.dao"/>-->
+    </mappers>
+
+
+</configuration>
