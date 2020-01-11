@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    
+<!--    配置数据库环境-->
+    <environments default="mysql-ssm">
+        <environment id="mysql-ssm">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/ssm?useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+<!--    mybatis执行数据库操作的接口类和方法
+            resource是需要配置映射文件==========非注解模式下使用，对应类的映射文件必须与对应的类在同一级目录，且与mapper类同名
+            ======以下两个注解模式 在对应的接口方法上使用注解===========
+            package包内所有接口都能使用
+            mapper使用对应的接口-->
+    <mappers>
+<!--        该包下所有接口都能扫描-->
+        <package name="com.yanl.dao"/>
+<!--       只能使用对应名称的接口 -->
+<!--        <mapper class="com.yanl.dao.IAccountDao"/>-->
+    </mappers>
+    
+    
+</configuration>

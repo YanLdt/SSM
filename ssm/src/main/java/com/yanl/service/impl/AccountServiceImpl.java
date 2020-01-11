@@ -19,6 +19,7 @@ import java.util.List;
 public class AccountServiceImpl implements IAccountService {
 
 
+    @Autowired
     private IAccountDao accountDao;
 
     /**
@@ -28,9 +29,12 @@ public class AccountServiceImpl implements IAccountService {
     @Override
     public List<Account> findAll() {
         System.out.println("业务层查询所有账户执行了.....");
-//        accountDao.findAll();
-//        System.out.println("持久层查询所有账户执行了....");
-        return null;
+        List<Account> accounts = accountDao.findAll();
+        for (Account account : accounts){
+            System.out.println(account.toString());
+        }
+        System.out.println("持久层查询所有账户执行了....");
+        return accounts;
     }
 
     /**
@@ -40,7 +44,7 @@ public class AccountServiceImpl implements IAccountService {
     @Override
     public void saveAccount(Account account) {
         System.out.println("业务层保存账户执行了.....");
-//        accountDao.saveAccount(account);
-//        System.out.println("持久层保存账户执行了....");
+        accountDao.saveAccount(account);
+        System.out.println("持久层保存账户执行了....");
     }
 }

@@ -13,6 +13,13 @@
 <body>
 <h1>ssm整合</h1>
 <a href="account/testSsm">testSSM</a><br/>
-<a href="account/testSpringAndMvc">testSpringAndSpringMvc</a>
+<a href="account/testSpringAndMvc">testSpringAndSpringMvc</a><br/>
+<a href="account/findAll">findAll</a><br/>
+
+<form action="account/saveAccount" method="post">
+    姓名：<input type="text" name="name"/><br/>
+    金额：<input type="text" name="money"><br/>
+    <input type="submit" value="保存" />
+</form>
 </body>
 </html>

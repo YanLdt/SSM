@@ -20,17 +20,10 @@ public class StringTest {
         ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         //从容器中读取service对象
         AccountServiceImpl accountService = ac.getBean("accountService", AccountServiceImpl.class);
+//        Account account = new Account();
+//        account.setName("大周哥");
+//        account.setMoney(1000d);
+//        accountService.saveAccount(account);
         accountService.findAll();
-        Account account = new Account();
-        account.setId(1);
-        account.setName("als");
-        account.setMoney(1000d);
-        accountService.saveAccount(account);
-
-    }
-
-    @Test
-    public void testSpringSpringMVC() {
-
     }
 }

@@ -18,6 +18,46 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+<!--    spring整合Mybatis
+            配置c3p0连接的数据源
+            配置SqlSessionFactory   mybatis-spring提供了FactoryBean
+            配置要工厂要生成代理对象的接口=====即DAO要扫描的包   -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/ssm?useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+<!--    配置SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--        注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+<!--配置dao要扫描的包-->
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.yanl.dao"/>
+    </bean>
+
+<!--    配置AOP-->
+<!--    <aop:aspectj-autoproxy proxy-target-class="true"/>-->
+<!--    配置事务管理器-->
+    <bean id="transactionManger" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+<!--    配置事务管理-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManger">
+        <tx:attributes>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="*" isolation="DEFAULT"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="pt1" expression="execution(* com.yanl.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"/>
+    </aop:config>
 
 
 </beans>
